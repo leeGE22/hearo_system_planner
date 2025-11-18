@@ -1,0 +1,23 @@
+name: Mirror Entire Repository to kistdolbom Organization
+
+on:
+  push:
+    branches:
+      - '**'   # 모든 브랜치에서의 push 이벤트에 대해 실행
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout full repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # 전체 이력 포함
+
+      - name: Mirror to kistdolbom Organization repo
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git remote add org https://x-access-token:${{ secrets.ORG_PUSH_TOKEN }}@github.com/kistdolbom/hearo_system_manager.git
+          git push org --mirror
