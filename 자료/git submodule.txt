@@ -1,0 +1,14 @@
+git submodule init
+git submodule update
+submodule로 이동
+원하는 branch로 이동
+git pull
+다시 전체 프로젝트 git push
+
+
+
+
+Add code used for GFID evaluation
+Add code used for video shooting
+
+Update submodule path

@@ -1,0 +1,18 @@
+<launch>
+    <arg name="command_ip" default="161.122.114.23" />
+    <arg name="system_manager_ip" default="192.168.10.110" />
+    <arg name="enable_smach_log" default="-l" />      <!-- insert '-l' to enable the smach log -->
+    <arg name="enable_smach_viewer" default="-v" />   <!-- insert '-v' to enable the smach viewer -->
+    
+    <node pkg="system_manager" type="context_reasoning_node.py" name="context_reasoning" output="screen"
+          args="-cip $(arg command_ip) -sip $(arg system_manager_ip) $(arg enable_smach_log) $(arg enable_smach_viewer)"/>
+
+    <node pkg="system_manager" type="task_allocation_node.py" name="task_allocation" output="screen"
+        args="$(arg enable_smach_log) $(arg enable_smach_viewer)"/>
+
+    <node pkg="system_manager" type="task_scheduling_node.py" name="task_scheduling" output="screen"
+        args="-sip $(arg system_manager_ip) $(arg enable_smach_log) $(arg enable_smach_viewer)"/>
+
+    <node pkg="system_manager" type="data_logging_node.py" name="data_logging" output="screen"/>
+
+</launch>

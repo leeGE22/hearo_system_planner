@@ -1,0 +1,37 @@
+https://everynewday1029.tistory.com/37
+https://velog.io/@deep-of-machine/ROS-ROS1-%EC%84%A4%EC%B9%98-Ubuntu20.04-ROS-Noetic
+https://discourse.ros.org/t/install-ros2-humble-deb-packages-in-ubuntu-20-04-focal/42589
+
+# 패키지 설치
+mkdir -p ~/ros1_bridge_ws/src
+cd ~/ros1_bridge_ws/src
+git clone https://github.com/ros2/ros1_bridge.git
+
+# 빌드
+cd ..
+source /opt/ros/noetic/setup.bash
+source /opt/ros/humble/setup.bash
+source /opt/ros/humble/setup.bash
+colcon build --packages-select ros1_bridge --cmake-force-configure
+source ~/ros1_bridge_ws/install/setup.bash
+
+터미널 1
+source /opt/ros/noetic/setup.bash
+roscore
+
+터미널 2
+source /opt/ros/noetic/setup.bash
+PUB
+rostopic pub -r 1 /chatter std_msgs/String "data: 'hello from ROS1'"
+
+터미널 3
+source /opt/ros/noetic/setup.bash
+source /opt/ros/humble/setup.bash
+source /opt/ros/humble/setup.bash
+source install/setup.bash
+ros2 run ros1_bridge dynamic_bridge
+
+터미널 4
+source /opt/ros/humble/setup.bash
+SUB / 로봇 통신
+ros2 run demo_nodes_py listener

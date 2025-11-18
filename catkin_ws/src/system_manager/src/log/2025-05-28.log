@@ -1,0 +1,19 @@
+[17:11:49] Study alone
+[17:11:49] Robot 2 assigned to 'chair' task
+[17:11:49] Robot 3 assigned to 'big table' task
+[17:18:25] Study alone
+[17:18:25] Robot 1 assigned to 'chair' task
+[17:18:25] Robot 3 assigned to 'big table' task
+[17:19:09] Study alone
+[17:19:09] Robot 1 assigned to 'big table' task
+[17:19:09] Robot 3 assigned to 'chair' task
+[17:26:27] Study alone
+[17:26:27] Robot 1 assigned to 'big table' task
+[17:26:27] Robot 2 assigned to 'chair' task
+[17:26:42] Finish Study alone
+[17:26:42] Robots 1, 2 returned to initial positions
+[17:26:48] Study with friend
+[17:26:48] Robots 1, 4 assigned to 'small table' task
+[17:26:48] Robots 2, 3 assigned to 'chair' task
+[17:27:00] Finish Study with friend
+[17:27:00] Robots 1, 2, 3, 4 returned to initial positions

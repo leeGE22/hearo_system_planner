@@ -1,0 +1,53 @@
+터미널 1
+$ source /opt/ros/noetic/setup.bash (sn)
+$ source ~/catkin_ws/devel/setup.bash (sd)
+$ roslaunch system_manager system_manager.launch 
+
+터미널 2
+$ source /opt/ros/noetic/setup.bash (sn)
+$ source ~/catkin_ws/devel/setup.bash (sd)
+$ rosrun system_manager publish_tester.py
+
+터미널 3
+$ source /opt/ros/noetic/setup.bash (sn)
+$ source /opt/ros/humble/setup.bash (sh)
+$ source /opt/ros/humble/setup.bash (sh)
+$ source ~/bridge_ws/install/setup.bash (si1)
+$ ros2 run ros1_bridge dynamic_bridge
+
+터미널 4
+$ cd web
+$ node app.js
+
+터미널 5
+$ source /opt/ros/humble/setup.bash (sh)
+$ source ~/ros2_ws/install/setup.bash (si2)
+$ ros2 run robot_bridge robot_bridge_node
+
+
+
+
+
+
+
+alias cw='cd ~/catkin_ws'
+alias cs='cd ~/catkin_ws/src'
+alias cm='cd ~/catkin_ws && catkin_make'
+
+alias cw1='cd ~/bridge_ws'
+alias cs1='cd ~/bridge_ws/src'
+alias cb1='cd ~/bridge_ws && colcon build && source install/setup.bash'
+
+alias cw2='cd ~/ros2_ws'
+alias cs2='cd ~/ros2_ws/src'
+alias cb='cd ~/ros2_ws && colcon build && source install/setup.bash'
+
+alias gb='gedit ~/.bashrc'
+alias sb='source ~/.bashrc'
+
+alias sn='source /opt/ros/noetic/setup.bash'
+alias sh='source /opt/ros/humble/setup.bash'
+
+alias sd='source ~/catkin_ws/devel/setup.bash'
+alias si1='source ~/bridge_ws/install/setup.bash'
+alias si2='source ~/ros2_ws/install/setup.bash'

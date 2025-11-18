@@ -1,0 +1,28 @@
+[15:18:16] Study alone
+[15:18:16] Robot 3 assigned to 'big table' task
+[15:18:16] Robot 4 assigned to 'chair' task
+[15:18:19] Finish Study alone
+[15:18:19] Robots 3, 4 returned to initial positions
+[15:18:23] Study with friend
+[15:18:23] Robots 3, 5 assigned to 'chair' task
+[15:18:23] Robots 4, 6 assigned to 'small table' task
+[15:18:27] Finish Study with friend
+[15:18:27] Robots 3, 4, 5, 6 returned to initial positions
+[15:18:30] Talk with friend
+[15:18:30] Robot 4 assigned to 'big table' task
+[15:18:30] Robots 5, 6 assigned to 'chair' task
+[15:18:34] Finish Talk with friend
+[15:18:34] Robots 4, 5, 6 returned to initial positions
+[15:18:37] Quit System Manager
+
+[16:34:49] Study alone
+[16:34:49] Robot 3 assigned to 'big table' task
+[16:34:49] Robot 4 assigned to 'chair' task
+[17:00:02] Finish Study alone
+[17:00:02] Robots 3, 4 returned to initial positions
+[17:05:46] Study alone
+[17:05:46] Robot 4 assigned to 'chair' task
+[17:05:46] Robot 6 assigned to 'big table' task
+[17:05:55] Study alone
+[17:05:55] Robot 3 assigned to 'chair' task
+[17:05:55] Robot 6 assigned to 'big table' task

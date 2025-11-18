@@ -1,0 +1,105 @@
+mysql 처음 생성
+
+CREATE DATABASE dolbom;
+USE dolbom;
+
+CREATE TABLE tb_robot (
+    idRobot INT PRIMARY KEY AUTO_INCREMENT,
+    ip VARCHAR(45) NOT NULL UNIQUE,
+    typeRobot VARCHAR(45) NOT NULL,
+    situation VARCHAR(45) NOT NULL,
+    task VARCHAR(45) DEFAULT NULL,
+    state VARCHAR(45) NOT NULL,
+    mapName VARCHAR(45) NOT NULL,
+    posInit VARCHAR(200) DEFAULT NULL,
+    regDt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    edDt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE tb_task (
+    taskName VARCHAR(45) PRIMARY KEY UNIQUE NOT NULL,
+    typeRobot VARCHAR(45) NOT NULL,
+    module FLOAT NOT NULL,
+    edDt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+SHOW TABLES;
+DESCRIBE tb_robot;
+DESCRIBE tb_task;
+
+INSERT INTO tb_robot (ip, typeRobot, situation, state, mapName, posInit)
+VALUES 
+('192.168.0.76', '2', 'Idle', 'idle', 'map_test', '{"position": {"x": 0.0, "y": 0.0, "z": 0.0}, "orientation": {"x": 0.0, "y": 0.0, "z": 0.0, "w": 0.0}}'),
+('192.168.0.79', '1', 'Idle', 'idle', 'map_test', '{"position": {"x": 0.0, "y": 0.0, "z": 0.0}, "orientation": {"x": 0.0, "y": 0.0, "z": 0.0, "w": 0.0}}'),
+('192.168.0.80', '2', 'Idle', 'idle', 'map_test', '{"position": {"x": 0.0, "y": 0.0, "z": 0.0}, "orientation": {"x": 0.0, "y": 0.0, "z": 0.0, "w": 0.0}}'),
+('192.168.0.81', '1', 'Idle', 'idle', 'map_test', '{"position": {"x": 0.0, "y": 0.0, "z": 0.0}, "orientation": {"x": 0.0, "y": 0.0, "z": 0.0, "w": 0.0}}');
+
+INSERT INTO tb_task (taskName, typeRobot, module)
+VALUES 
+('big table', '1', 1.0),
+('chair', '2', 0.0),
+('short cart', '2', 0.5),
+('short table', '2', 1.0),
+('small table', '1', 0.0),
+('tall cart', '1', 0.5);
+
+SELECT * FROM tb_robot;
+SELECT * FROM tb_task;
+
+CREATE USER 'user'@'localhost' IDENTIFIED BY 'Kist1966!';
+
+ALTER USER 'user'@'localhost' IDENTIFIED WITH mysql_native_password BY 'Kist1966!';
+FLUSH PRIVILEGES;
+
+SELECT user, plugin FROM mysql.user;
++------------------+-----------------------+
+| user             | plugin                |
++------------------+-----------------------+
+| debian-sys-maint | caching_sha2_password |
+| mysql.infoschema | caching_sha2_password |
+| mysql.session    | caching_sha2_password |
+| mysql.sys        | caching_sha2_password |
+| root             | auth_socket           |
+| user             | mysql_native_password |
++------------------+-----------------------+
+
+GRANT ALL PRIVILEGES ON dolbom.* TO 'user'@'localhost';
+FLUSH PRIVILEGES;
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+mysql 실행
+
+$ sudo mysql -u root -p    >> passward : kist
+$ USE dolbom
+$ SELECT * FROM tb_robot; / SELECT * FROM tb_task;
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+서버 PC와 robot PC 같은 라우터에 연결(DHCP 설정해두기)
+
+robot(192.168.10.111) mysql client만 설치
+$ sudo apt update
+$ sudo apt install mysql-client
+
+서버(192.168.10.110)에서 실행 권한 부여
+$ cd /etc/mysql/mysql.conf.d/
+$ sudo gedit mysqld.cnf 
+  bind-address = 127.0.0.1 : 외부 접근 불가
+  bind-address = 0.0.0.0 로 변경
+
+$ sudo service mysql restart
+$ sudo mysql -u root -p    >> passward : kist
+
+mysql> CREATE USER 'robot'@'192.168.10.111' IDENTIFIED BY 'kist';
+mysql> GRANT ALL PRIVILEGES ON dolbom.* TO 'robot'@'192.168.10.111';
+mysql> FLUSH PRIVILEGES;
+
+$ sudo ufw allow from 192.168.10.111 to any port 3306
+
+robot(192.168.10.111) PC 터미널에서
+$ mysql -h 192.168.10.110 -u robot -p

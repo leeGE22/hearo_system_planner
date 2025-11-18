@@ -1,0 +1,15 @@
+웹 실행
+$ cd web
+$ node app.js
+
+internal/modules/cjs/loader.js:638
+    throw err;
+
+위의 Error 발생 시 $ node -v
+버전이 16 미만이면 업그레이드 필요 (예: v10.x, v12.x)
+
+Node.js 업그레이드 방법 (Ubuntu 기준)
+1) https://nodejs.org/en 접속하여 Download Node.js(LTS) 또는 https://nodejs.org/en/download 접속하여 Standalone Binary(.xz)
+2) node-v22.15.1-linux-x64.tar.xz 파일 위치에서 $ tar -xf node-v22.15.1-linux-x64.tar.xz
+3) $ mv node-v22.15.1-linux-x64 nodejs
+4) bashrc에 추가 export PATH=~/web/nodejs/bin:$PATH /    ->    $ source ~/.bashrc
