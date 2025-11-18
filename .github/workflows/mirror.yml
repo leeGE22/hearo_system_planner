@@ -14,10 +14,11 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0  # 전체 이력 포함
+          persist-credentials: false
 
       - name: Mirror to kistdolbom Organization repo
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git remote add org https://x-access-token:${{ secrets.ORG_PUSH_TOKEN }}@github.com/kistdolbom/hearo_system_manager.git
-          git push org --mirror
+          git remote add org https://x-access-token:${{ secrets.ORG_PUSH_TOKEN }}@github.com/kistdolbom/hearo_system_planner.git
+          git push org --mirror --force
